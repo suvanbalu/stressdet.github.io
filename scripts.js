@@ -7,6 +7,20 @@ let edaChartInstance = null;
 let tempChartInstance = null;
 let predictionChartInstance = null;
 
+const checkbox = document.getElementById('checkbox');
+  if (checkbox) {
+    checkbox.addEventListener('change', function(event) {
+      console.log("Checkbox toggled");
+      if (event.target.checked) {
+          document.body.classList.add('dark-mode');
+      } else {
+          document.body.classList.remove('dark-mode');
+      }
+    });
+  } else {
+    console.error('Checkbox element not found!');
+  }
+
 function destroyChartInstances() {
   if (accChartInstance) {
     accChartInstance.destroy();
@@ -89,6 +103,8 @@ function fetchData() {
   // clearCanvas('edaChart');
   // clearCanvas('tempChart');
   // clearCanvas('predictionChart');
+  const feedbackMessageElement = document.getElementById('feedbackMessage'); // Assuming you have an element with this ID to show messages
+  feedbackMessageElement.textContent='';
   document.getElementById('loader').style.display = 'block';
   const deviceId = document.getElementById('device_id').value;
   console.log("DeviceID", deviceId);
