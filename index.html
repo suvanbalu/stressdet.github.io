@@ -5,15 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stress Detector Dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="scripts.js"></script>
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 <div class="container">
+    <!-- <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+        </label>
+        <em>Enable Dark Mode!</em>
+    </div> -->
     <h1>Stress Detector Dashboard</h1>
     <div id="deviceInput">
         <label for="device_id">Enter Device ID:</label>
-        <input type="text" id="device_id" placeholder="e.g. 6151">
+        <input type="text" id="device_id" placeholder="e.g. 1234">
         <button onclick="fetchData()">Get Data</button>
     </div>
     <div id="loader" class="loader"></div>
@@ -24,12 +31,23 @@
     <div id="noDataError" class="info-card hidden">
         <p>No data found for the entered Device ID. Please check the ID and try again.</p>
     </div>
-    <div class="chart-container" id="chartcanvas">
-        <canvas id="accChart"></canvas>
-        <canvas id="edaChart"></canvas>
-        <canvas id="tempChart"></canvas>
-        <canvas id="predictionChart"></canvas>
-    </div>
+    <div class="chart-row">
+        <div class="chart-container" id="chartcanvas">
+          <canvas id="accChart"></canvas>
+        </div>
+        <div class="chart-container">
+          <canvas id="edaChart"></canvas>
+        </div>
+      </div>
+      
+      <div class="chart-row">
+        <div class="chart-container" id="chartcanvas">
+          <canvas id="tempChart"></canvas>
+        </div>
+        <div class="chart-container">
+          <canvas id="predictionChart"></canvas>
+        </div>
+      </div>      
     <div id="maxPredictionSummary" class="info-card"></div>
     <div id="feedbackSection" class="info-card">
         <p>How are you actually feeling (apart from the prediction, used for model improvement)?</p>
@@ -41,9 +59,10 @@
             </select>
             <button onclick="submitFeedback()">Send Feedback</button>
         </div>
-        <div id="feedbackMessage" style="text-align: center;"></div>
+        <div id="feedbackMessage" style="text-align: center; margin-top: 8px;"></div>
     </div>
 </div>
+<script src="scripts.js"></script>  
 </body>
 </html>
 
